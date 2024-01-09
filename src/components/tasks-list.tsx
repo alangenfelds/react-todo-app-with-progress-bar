@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import TodoItem from "./todo-item/todo-item";
 import AddTodo from "./add-todo";
@@ -6,11 +6,31 @@ import CustomSelect, { SelectOption } from "./ui/custom-select";
 
 import "./tasks-list.scss";
 import { useTodos } from "../context/TodosContext";
+import { Todo } from "../types";
 
 const TasksList = () => {
   const [selectedOption, setSelectedOption] = useState<SelectOption>("All");
-
+  const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
   const { todos, isLoading, error } = useTodos();
+
+  const filterTodos = useCallback(
+    (selected: SelectOption) => {
+      if (selected === "All") {
+        setFilteredTodos(todos);
+      } else if (selected === "Done") {
+        const doneTodos = todos.filter((todo) => todo.completed);
+        setFilteredTodos(doneTodos);
+      } else if (selected === "Undone") {
+        const undoneTodos = todos.filter((todo) => !todo.completed);
+        setFilteredTodos(undoneTodos);
+      }
+    },
+    [todos]
+  );
+
+  useEffect(() => {
+    filterTodos(selectedOption);
+  }, [selectedOption, todos, filterTodos]);
 
   const handleSelect = (selected: SelectOption) => {
     setSelectedOption(selected);
@@ -34,7 +54,7 @@ const TasksList = () => {
         />
       </div>
       <div className="tasks-list">
-        {todos.map((todo) => (
+        {filteredTodos.map((todo) => (
           <TodoItem key={todo.id} data={todo} />
         ))}
         <AddTodo />
