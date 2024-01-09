@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import TodoItem from "./todo-item";
+import TodoItem from "./todo-item/todo-item";
 import AddTodo from "./add-todo";
 import Select, { SelectOption } from "./ui/select";
 

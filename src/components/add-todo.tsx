@@ -1,4 +1,4 @@
-import "./todo-item.scss";
+import "./todo-item/todo-item.scss";
 
 type Props = {};
 

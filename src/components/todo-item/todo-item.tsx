@@ -1,5 +1,5 @@
-import { Todo } from "../types";
-import DotsMenu from "./ui/dots";
+import { Todo } from "../../types";
+import DotsMenu from "./dots";
 
 import "./todo-item.scss";
 
