@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import TodoItem from "./todo-item/todo-item";
 import AddTodo from "./add-todo";
-import Select, { SelectOption } from "./ui/select";
+import CustomSelect, { SelectOption } from "./ui/custom-select";
 
 import "./tasks-list.scss";
 import { useTodos } from "../context/TodosContext";
@@ -28,7 +28,10 @@ const TasksList = () => {
     <div className="tasks-list-container">
       <div className="tasks-list-header">
         <div className="tasks-label">Tasks</div>
-        <Select selectedOption={selectedOption} onSelectChange={handleSelect} />
+        <CustomSelect
+          selectedOption={selectedOption}
+          onSelectChange={handleSelect}
+        />
       </div>
       <div className="tasks-list">
         {todos.map((todo) => (
