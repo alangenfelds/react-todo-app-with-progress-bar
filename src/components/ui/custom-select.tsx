@@ -57,11 +57,12 @@ const CustomSelect = ({ selectedOption, onSelectChange }: Props) => {
 
   const handleSelectChange = (option: SelectOption) => {
     onSelectChange(option);
+    setIsVisible(false);
   };
 
   return (
-    <div ref={menuRef} className="select-container" onClick={showMenu}>
-      <div className="custom-select">
+    <div ref={menuRef} className="select-container">
+      <div className="custom-select" onClick={showMenu}>
         <div>{selectedOption}</div>
         <div></div>
       </div>

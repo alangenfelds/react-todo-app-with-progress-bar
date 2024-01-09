@@ -3,11 +3,19 @@ import DotsSvg from "./dots.svg";
 
 import "./dots.scss";
 
-const ContextMenu = () => {
+interface ThreeDotsContextMenuProps {
+  onSelect: (value: string) => void;
+}
+
+const ContextMenu = ({ onSelect }: ThreeDotsContextMenuProps) => {
   return (
     <div className="dots-context-menu">
-      <div className="menu-item">Edit</div>
-      <div className="menu-item red">Delete</div>
+      <div className="menu-item" onClick={() => onSelect("Edit")}>
+        Edit
+      </div>
+      <div className="menu-item red" onClick={() => onSelect("Delete")}>
+        Delete
+      </div>
     </div>
   );
 };
@@ -38,10 +46,16 @@ const DotsMenu = () => {
     };
   }, []);
 
+  const handleSelectAction = () => {
+    setIsVisible(false);
+  };
+
   return (
-    <div ref={menuRef} className="three-dots-container" onClick={showMenu}>
-      <img src={DotsSvg} alt="three dots" />
-      {isVisible && <ContextMenu />}
+    <div ref={menuRef} className="three-dots-container">
+      <div onClick={showMenu} className="dots-button-wrapper">
+        <img src={DotsSvg} alt="three dots" />
+      </div>
+      {isVisible && <ContextMenu onSelect={handleSelectAction} />}
     </div>
   );
 };
