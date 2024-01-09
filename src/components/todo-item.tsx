@@ -1,8 +1,8 @@
-import { TTodoItem } from "../types";
+import { Todo } from "../types";
 
 import "./todo-item.scss";
 
-type Props = { data: TTodoItem };
+type Props = { data: Todo };
 
 const TodoItem = ({ data }: Props) => {
   const { title } = data;

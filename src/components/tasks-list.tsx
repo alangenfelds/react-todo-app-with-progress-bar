@@ -1,36 +1,29 @@
-import { TTodoItem } from "../types";
+import { useEffect, useState } from "react";
+
+import { Todo } from "../types";
 import TodoItem from "./todo-item";
-import "./tasks-list.scss";
 import AddTodo from "./add-todo";
 import Select, { SelectOption } from "./select";
-import { useState } from "react";
-
-const TODOS: TTodoItem[] = [
-  {
-    id: 1,
-    title: "Publish a new blog",
-    completed: true,
-  },
-  {
-    id: 2,
-    title: "Buy food for dinner",
-    completed: false,
-  },
-  {
-    id: 3,
-    title: "Call Marie at 10.00 PM",
-    completed: false,
-  },
-  {
-    id: 4,
-    title: "Write a react blog post",
-    completed: false,
-  },
-];
+import "./tasks-list.scss";
+import { fetchTodos } from "../services/todosService";
 
 type Props = {};
 
 const TasksList = (props: Props) => {
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedTodos = await fetchTodos();
+        setTodos(fetchedTodos);
+      } catch (error) {
+        console.error("Error fetching todos:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   const [selectedOption, setSelectedOption] = useState<SelectOption>("All");
 
   const handleSelect = (selected: SelectOption) => {
@@ -44,7 +37,7 @@ const TasksList = (props: Props) => {
         <Select selectedOption={selectedOption} onSelectChange={handleSelect} />
       </div>
       <div className="tasks-list">
-        {TODOS.map((todo) => (
+        {todos.map((todo) => (
           <TodoItem key={todo.id} data={todo} />
         ))}
         <AddTodo />
