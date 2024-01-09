@@ -41,7 +41,9 @@ const TodoItem = ({ todo }: Props) => {
     <div className="todo-item">
       <div className="left-side">
         <CustomCheckbox todoId={id} completed={completed} />
-        <div className={`${completed ? "completed" : ""}`}>{title}</div>
+        <div className={`todo-title ${completed ? "completed" : ""}`}>
+          {title}
+        </div>
       </div>
       <ItemMenu todo={todo} onActionSelect={handleActionSelcted} />
     </div>

@@ -15,8 +15,15 @@
 
   .left-side {
     display: flex;
+    width: calc(100% - 32px);
     align-items: center;
     gap: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+
+    .todo-title {
+      width: calc(100% - 46px);
+    }
   }
 }
 
