@@ -7,6 +7,12 @@
   background-color: #fff;
   border-radius: 9999px;
   padding: 0 20px;
+
+  .left-side {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 }
 
 .completed {
