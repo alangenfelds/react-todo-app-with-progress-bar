@@ -1,0 +1,23 @@
+.tasks-list-container {
+  width: 100%;
+  margin-top: 33px;
+
+  .tasks-list-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .tasks-label {
+      color: #000;
+      font-size: 24px;
+      font-weight: 500;
+    }
+  }
+
+  .tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    margin-top: 16px;
+  }
+}

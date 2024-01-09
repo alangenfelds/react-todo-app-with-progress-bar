@@ -1,0 +1,33 @@
+@import "../styles/_colors.scss";
+
+.progress-bar-container {
+  width: 100%;
+  height: 123px;
+  border-radius: 20px;
+  background-color: $background-progress-bar;
+  padding: 25px 19px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: white;
+
+  .title {
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .bar {
+    width: 100%;
+    height: 7.343px;
+    background-color: #fff;
+    border-radius: 999px;
+  }
+
+  .counter {
+    color: #ebb9b8;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
