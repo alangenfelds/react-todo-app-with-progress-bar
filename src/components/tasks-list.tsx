@@ -1,34 +1,28 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import { Todo } from "../types";
 import TodoItem from "./todo-item";
 import AddTodo from "./add-todo";
-import Select, { SelectOption } from "./select";
+import Select, { SelectOption } from "./ui/select";
+
 import "./tasks-list.scss";
-import { fetchTodos } from "../services/todosService";
+import { useTodos } from "../context/TodosContext";
 
-type Props = {};
-
-const TasksList = (props: Props) => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const fetchedTodos = await fetchTodos();
-        setTodos(fetchedTodos);
-      } catch (error) {
-        console.error("Error fetching todos:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+const TasksList = () => {
   const [selectedOption, setSelectedOption] = useState<SelectOption>("All");
+
+  const { todos, isLoading, error } = useTodos();
 
   const handleSelect = (selected: SelectOption) => {
     setSelectedOption(selected);
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <div className="tasks-list-container">

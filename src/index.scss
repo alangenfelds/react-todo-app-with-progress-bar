@@ -8,4 +8,20 @@ body {
   * {
     box-sizing: border-box;
   }
+
+  .flex {
+    display: flex;
+  }
+
+  .gap-10 {
+    gap: 10px;
+  }
+
+  .pointer {
+    cursor: pointer;
+  }
+
+  .h-full {
+    height: 100%;
+  }
 }
