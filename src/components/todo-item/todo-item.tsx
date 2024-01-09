@@ -1,20 +1,24 @@
+import { useState } from "react";
 import { Todo } from "../../types";
 import CustomCheckbox from "../ui/custom-checkbox";
-import DotsMenu from "./dots";
+import ItemMenu from "./item-menu";
 
 import "./todo-item.scss";
 
-type Props = { data: Todo };
+type Props = { todo: Todo };
 
-const TodoItem = ({ data }: Props) => {
-  const { id, title, completed } = data;
+const TodoItem = ({ todo }: Props) => {
+  const [isEdit, setIsEdit] = useState(false);
+
+  const { id, title, completed } = todo;
+
   return (
     <div className="todo-item">
       <div className="left-side">
         <CustomCheckbox todoId={id} completed={completed} />
         <div className={`${completed ? "completed" : ""}`}>{title}</div>
       </div>
-      <DotsMenu />
+      <ItemMenu todo={todo} />
     </div>
   );
 };

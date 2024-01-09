@@ -50,7 +50,7 @@ const TasksList = () => {
       </div>
       <div className="tasks-list">
         {filteredTodos.map((todo) => (
-          <TodoItem key={todo.id} data={todo} />
+          <TodoItem key={todo.id} todo={todo} />
         ))}
         <AddTodo />
       </div>

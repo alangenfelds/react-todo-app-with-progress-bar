@@ -28,6 +28,10 @@
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
 }
 
+.dots-context-menu.disabled {
+  bottom: -40px;
+}
+
 .red {
   color: $red;
 }
