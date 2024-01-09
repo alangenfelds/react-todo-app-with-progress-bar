@@ -7,6 +7,7 @@ import CustomSelect, { SelectOption } from "./ui/custom-select";
 import "./tasks-list.scss";
 import { useTodos } from "../context/TodosContext";
 import { Todo } from "../types";
+import Loader from "./ui/loader";
 
 const TasksList = () => {
   const [selectedOption, setSelectedOption] = useState<SelectOption>("All");
@@ -36,18 +37,12 @@ const TasksList = () => {
     setSelectedOption(selected);
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
   return (
     <div className="tasks-list-container">
       <div className="tasks-list-header">
         <div className="tasks-label">Tasks</div>
+        {isLoading && <Loader />}
+        {error && <div>Error: {error.message}</div>}
         <CustomSelect
           selectedOption={selectedOption}
           onSelectChange={handleSelect}

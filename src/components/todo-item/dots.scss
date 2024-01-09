@@ -1,3 +1,5 @@
+@import "../../styles/_colors.scss";
+
 .three-dots-container {
   position: relative;
   display: flex;
@@ -27,7 +29,7 @@
 }
 
 .red {
-  color: #e07c7c;
+  color: $red;
 }
 
 .flex {

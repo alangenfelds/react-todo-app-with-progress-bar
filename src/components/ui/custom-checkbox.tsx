@@ -12,8 +12,8 @@ type Props = {
 const CustomCheckbox = ({ todoId, completed }: Props) => {
   const { refetchTodos } = useTodos();
 
-  const handleClick = () => {
-    patchTodo(todoId, { completed: !completed });
+  const handleClick = async () => {
+    await patchTodo(todoId, { completed: !completed });
     refetchTodos();
   };
   return (
