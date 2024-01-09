@@ -1,0 +1,48 @@
+@import "../styles/_colors.scss";
+
+.edit-todo-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 46px;
+  background-color: #fff;
+  border-radius: 9999px;
+  padding-left: 20px;
+  padding-right: 6px;
+
+  .edit-todo-input {
+    width: calc(100% - 64px);
+    outline: none;
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: $dark-grey;
+
+    &::placeholder {
+      color: #bcbcbc;
+    }
+  }
+
+  .save-button {
+    cursor: pointer;
+    border: none;
+    width: 64px;
+    height: 36px;
+    border-radius: 999px;
+    background: #585292;
+    color: #fff;
+    font-size: 14px;
+    transition: all 0.2s ease-in;
+
+    &:hover:not(.disabled) {
+      background: #6e66b5;
+    }
+  }
+
+  .save-button.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}

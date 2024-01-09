@@ -1,16 +1,41 @@
 import { useState } from "react";
 import { Todo } from "../../types";
 import CustomCheckbox from "../ui/custom-checkbox";
-import ItemMenu from "./item-menu";
+import ItemMenu, { ItemAction } from "./item-menu";
 
 import "./todo-item.scss";
+import { deleteTodo, patchTodo } from "../../services/todosService";
+import { useTodos } from "../../context/TodosContext";
+import EditTodo from "../edit-todo";
 
 type Props = { todo: Todo };
 
 const TodoItem = ({ todo }: Props) => {
+  const { refetchTodos } = useTodos();
   const [isEdit, setIsEdit] = useState(false);
 
   const { id, title, completed } = todo;
+
+  const handleActionSelcted = async (value: ItemAction) => {
+    if (value === "Edit") {
+      setIsEdit(true);
+    }
+
+    if (value === "Delete") {
+      await deleteTodo(todo.id);
+      refetchTodos();
+    }
+  };
+
+  const handleUpdateTodo = async (title: string) => {
+    await patchTodo(id, { title });
+    refetchTodos();
+    setIsEdit(false);
+  };
+
+  if (isEdit) {
+    return <EditTodo title={todo.title} onSave={handleUpdateTodo} />;
+  }
 
   return (
     <div className="todo-item">
@@ -18,7 +43,7 @@ const TodoItem = ({ todo }: Props) => {
         <CustomCheckbox todoId={id} completed={completed} />
         <div className={`${completed ? "completed" : ""}`}>{title}</div>
       </div>
-      <ItemMenu todo={todo} />
+      <ItemMenu todo={todo} onActionSelect={handleActionSelcted} />
     </div>
   );
 };

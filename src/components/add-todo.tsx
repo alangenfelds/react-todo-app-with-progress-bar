@@ -10,7 +10,7 @@ const AddTodo = () => {
   const handleEnterClicked = async (
     event: React.KeyboardEvent<HTMLInputElement>
   ) => {
-    if (event.key === "Enter" && inputRef.current) {
+    if (event.key === "Enter" && inputRef.current && inputRef.current.value) {
       await postTodo(inputRef.current.value);
       inputRef.current.value = "";
       refetchTodos();

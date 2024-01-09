@@ -3,10 +3,8 @@ import { useEffect, useRef, useState } from "react";
 
 import DotsSvg from "./dots.svg";
 import { Todo } from "../../types";
-import { deleteTodo } from "../../services/todosService";
-import { useTodos } from "../../context/TodosContext";
 
-type ItemAction = "Edit" | "Delete";
+export type ItemAction = "Edit" | "Delete";
 
 interface ItemMenuContextMenuProps {
   disableEdit: boolean;
@@ -30,12 +28,12 @@ const ContextMenu = ({ onSelect, disableEdit }: ItemMenuContextMenuProps) => {
 
 interface ItemMenuProps {
   todo: Todo;
+  onActionSelect: (value: ItemAction) => void;
 }
 
-const ItemMenu = ({ todo }: ItemMenuProps) => {
+const ItemMenu = ({ todo, onActionSelect }: ItemMenuProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const { refetchTodos } = useTodos();
 
   const showMenu = () => {
     setIsVisible(true);
@@ -59,14 +57,8 @@ const ItemMenu = ({ todo }: ItemMenuProps) => {
     };
   }, []);
 
-  const handleSelectAction = async (value: ItemAction) => {
-    if (value === "Edit") {
-    }
-
-    if (value === "Delete") {
-      await deleteTodo(todo.id);
-      refetchTodos();
-    }
+  const handleSelectAction = (value: ItemAction) => {
+    onActionSelect(value);
     setIsVisible(false);
   };
 
