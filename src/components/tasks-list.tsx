@@ -42,7 +42,7 @@ const TasksList = () => {
       <div className="tasks-list-header">
         <div className="tasks-label">Tasks</div>
         {isLoading && <Loader />}
-        {error && <div>Error: {error.message}</div>}
+        {error && <div className="error">Error fetching data!</div>}
         <CustomSelect
           selectedOption={selectedOption}
           onSelectChange={handleSelect}

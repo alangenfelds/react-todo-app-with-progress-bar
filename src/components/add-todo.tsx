@@ -1,9 +1,31 @@
-import "./todo-item/todo-item.scss";
+import { useTodos } from "../context/TodosContext";
+import { postTodo } from "../services/todosService";
+import "./add-todo.scss";
+import { useRef } from "react";
 
-type Props = {};
+const AddTodo = () => {
+  const { refetchTodos } = useTodos();
+  const inputRef = useRef<HTMLInputElement>(null);
 
-const AddTodo = (props: Props) => {
-  return <div className="todo-item">Add your todo...</div>;
+  const handleEnterClicked = async (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (event.key === "Enter" && inputRef.current) {
+      await postTodo(inputRef.current.value);
+      inputRef.current.value = "";
+      refetchTodos();
+    }
+  };
+
+  return (
+    <input
+      ref={inputRef}
+      type="text"
+      className="add-todo-input"
+      placeholder="Add your todo..."
+      onKeyDown={handleEnterClicked}
+    />
+  );
 };
 
 export default AddTodo;

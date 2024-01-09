@@ -20,6 +20,26 @@ export const fetchTodoById = async (id: number): Promise<Todo> => {
   return todo;
 };
 
+export const postTodo = async (todoText: string): Promise<Todo> => {
+  const newTodo = {
+    id: new Date().getTime(),
+    completed: false,
+    title: todoText,
+  };
+  const response = await fetch(`${baseURL}/todos`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newTodo),
+  });
+  if (!response.ok) {
+    throw new Error("Failed to create todo");
+  }
+  const updated: Todo = await response.json();
+  return updated;
+};
+
 export const updateTodo = async (
   id: number,
   updatedTodo: Todo
