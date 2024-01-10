@@ -1,6 +1,6 @@
 import { Todo } from "../types";
 
-const baseURL = "http://localhost:3001";
+export const baseURL = "http://localhost:3001";
 
 export const fetchTodos = async (): Promise<Todo[]> => {
   const response = await fetch(`${baseURL}/todos`);

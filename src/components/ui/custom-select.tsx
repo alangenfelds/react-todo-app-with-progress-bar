@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 
 import "./custom-select.scss";
+import { DATA_TEST_IDS } from "../../constants";
 
 export type SelectOption = "All" | "Done" | "Undone";
 
@@ -61,7 +62,11 @@ const CustomSelect = ({ selectedOption, onSelectChange }: Props) => {
   };
 
   return (
-    <div ref={menuRef} className="select-container">
+    <div
+      ref={menuRef}
+      className="select-container"
+      data-testid={DATA_TEST_IDS.TASKS_SELECTOR}
+    >
       <div className="custom-select" onClick={showMenu}>
         <div>{selectedOption}</div>
         <div></div>

@@ -8,6 +8,7 @@ import "./tasks-list.scss";
 import { useTodos } from "../context/TodosContext";
 import { Todo } from "../types";
 import Loader from "./ui/loader";
+import { DATA_TEST_IDS } from "../constants";
 
 const TasksList = () => {
   const [selectedOption, setSelectedOption] = useState<SelectOption>("All");
@@ -40,7 +41,9 @@ const TasksList = () => {
   return (
     <div className="tasks-list-container">
       <div className="tasks-list-header">
-        <div className="tasks-label">Tasks</div>
+        <div className="tasks-label" data-testid={DATA_TEST_IDS.TASKS_LABEL}>
+          Tasks
+        </div>
         {isLoading && <Loader />}
         {error && <div className="error">Error fetching data!</div>}
         <CustomSelect

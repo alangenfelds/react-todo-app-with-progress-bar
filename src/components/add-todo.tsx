@@ -1,3 +1,4 @@
+import { DATA_TEST_IDS } from "../constants";
 import { useTodos } from "../context/TodosContext";
 import { postTodo } from "../services/todosService";
 import "./add-todo.scss";
@@ -19,6 +20,7 @@ const AddTodo = () => {
 
   return (
     <input
+      data-testid={DATA_TEST_IDS.ADD_TODO_INPUT}
       ref={inputRef}
       type="text"
       className="add-todo-input"

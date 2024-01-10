@@ -1,3 +1,4 @@
+import { DATA_TEST_IDS } from "../constants";
 import { useTodos } from "../context/TodosContext";
 import "./progress-bar.scss";
 
@@ -28,7 +29,10 @@ const ProgressBar = () => {
   };
 
   return (
-    <div className="progress-bar-container">
+    <div
+      className="progress-bar-container"
+      data-testid={DATA_TEST_IDS.PROGRESS_BAR}
+    >
       <div className="title">Progress</div>
       <div className="bar">
         <div style={getProgressBarStyle()} />
