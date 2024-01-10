@@ -11,15 +11,6 @@ export const fetchTodos = async (): Promise<Todo[]> => {
   return todos;
 };
 
-export const fetchTodoById = async (id: number): Promise<Todo> => {
-  const response = await fetch(`${baseURL}/todos/${id}`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch todo with ID: ${id}`);
-  }
-  const todo: Todo = await response.json();
-  return todo;
-};
-
 export const postTodo = async (todoText: string): Promise<Todo> => {
   const newTodo = {
     id: new Date().getTime(),
