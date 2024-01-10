@@ -37,10 +37,15 @@ const TodoItem = ({ todo }: Props) => {
     return <EditTodo title={todo.title} onSave={handleUpdateTodo} />;
   }
 
+  const handleToggle = async () => {
+    await patchTodo(id, { completed: !completed });
+    refetchTodos();
+  };
+
   return (
     <div className="todo-item">
       <div className="left-side">
-        <CustomCheckbox todoId={id} completed={completed} />
+        <CustomCheckbox completed={completed} onToggle={handleToggle} />
         <div className={`todo-title ${completed ? "completed" : ""}`}>
           {title}
         </div>
